@@ -198,7 +198,16 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _default = "\n<div class=\"spinner\">\n  <% data.forEach((item, i) => { %>\n    <div class=\"spinner-item\" data-key=<%=i%>></div>  \n  <% }) %>\n  <div class=\"spinner-selector\"></div>\n</div>\n";
+var _default = "\n<div class=\"spinner\">\n  <div class=\"spinner-items\">\n    <% data.forEach((item, i) => { %>\n      <div class=\"spinner-item\" data-key=<%=i%>></div>  \n    <% }) %>\n  </div>\n</div>\n";
+exports.default = _default;
+},{}],"src/templates/restaurants.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _default = "\n<ul>\n<% data.forEach((item, i) => { %>\n  <li><%= item %></li>  \n<% }) %>\n</lu>\n";
 exports.default = _default;
 },{}],"node_modules/base64-js/index.js":[function(require,module,exports) {
 'use strict'
@@ -19374,7 +19383,9 @@ require("../scss/main");
 
 var _restaurants = _interopRequireDefault(require("../data/restaurants"));
 
-var _spinner = _interopRequireDefault(require("./templates/spinner.js"));
+var _spinner = _interopRequireDefault(require("./templates/spinner"));
+
+var _restaurants2 = _interopRequireDefault(require("./templates/restaurants"));
 
 var _utils = require("./utils");
 
@@ -19413,7 +19424,7 @@ function () {
       this.root.innerHTML = (0, _utils.compileTempate)(_spinner.default, this.data);
       this.items = document.querySelectorAll(".spinner-item");
       this.spinner = document.querySelector(".spinner");
-      this.selector = document.querySelector(".spinner-selector");
+      this.spinnerItems = document.querySelector(".spinner-items");
       this.items.forEach(function (item, i) {
         var itemRotation = i * _this.rotation;
         item.style.transform = "rotate(".concat(itemRotation, "deg)");
@@ -19425,9 +19436,8 @@ function () {
     value: function spin(e) {
       var rotations = 5 * 360;
       var toWinner = this.rotation * this.winnderIndex;
-      console.log(this.winnderIndex);
-      this.selector.style.transform = "rotate(".concat(rotations + toWinner, "deg)");
-      var spinTimer = setInterval(function () {}, 1000);
+      var val = (rotations + toWinner) * -1;
+      this.spinnerItems.style.transform = "rotate(".concat(val, "deg)");
     }
   }]);
 
@@ -19435,7 +19445,7 @@ function () {
 }();
 
 new Spinner(_restaurants.default, root);
-},{"../scss/main":"scss/main.scss","../data/restaurants":"data/restaurants.json","./templates/spinner.js":"src/templates/spinner.js","./utils":"src/utils/index.js","lodash":"node_modules/lodash/lodash.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"../scss/main":"scss/main.scss","../data/restaurants":"data/restaurants.json","./templates/spinner":"src/templates/spinner.js","./templates/restaurants":"src/templates/restaurants.js","./utils":"src/utils/index.js","lodash":"node_modules/lodash/lodash.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -19463,7 +19473,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "34985" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "36665" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

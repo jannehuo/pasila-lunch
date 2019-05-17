@@ -7,6 +7,8 @@ body, html {
   padding: 0;
   font-family: "Roboto", sans-serif;
   font-size: 18px;
+  background-color: #f2f2f2;
+  overflow: hidden;
 }
 
 #root {
@@ -24,37 +26,42 @@ body, html {
   position: relative;
   cursor: pointer;
 }
-.spinner .spinner-selector, .spinner .spinner-item {
+.spinner:after {
+  content: "";
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 3px solid #333333;
+  top: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+}
+.spinner .spinner-items {
+  width: 100%;
+  height: 100%;
+  transition: transform 3s ease;
+  -webkit-transition: transform 3s ease;
+  will-change: transform;
+}
+.spinner .spinner-item {
   width: 100%;
   height: 100%;
   border-radius: 50%;
   position: absolute;
 }
 .spinner .spinner-item:after {
-  content: "";
+  content: attr(data-key);
   position: absolute;
   width: 70px;
   height: 70px;
   border-radius: 50%;
-  background-color: black;
+  background-color: #333333;
   top: -35px;
-  left: 50%;
-  transform: translateX(-50%);
-  -webkit-transform: translateX(-50%);
-}
-.spinner .spinner-selector {
-  transition: transform 3s ease;
-  -webkit-transition: transform 3s ease;
-  will-change: transform;
-}
-.spinner .spinner-selector:after {
-  content: "";
-  position: absolute;
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  border: 2px solid;
-  top: -50px;
+  color: #f2f2f2;
+  text-align: center;
+  line-height: 70px;
   left: 50%;
   transform: translateX(-50%);
   -webkit-transform: translateX(-50%);

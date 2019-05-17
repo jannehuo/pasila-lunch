@@ -1,8 +1,9 @@
 import "../scss/main"
 import data from "../data/restaurants"
-import spinner from "./templates/spinner.js"
+import spinner from "./templates/spinner"
+import restaurants from "./templates/restaurants"
 import { compileTempate } from "./utils"
-import { sample, shuffle, times } from "lodash"
+import { sample, shuffle } from "lodash"
 const root = document.getElementById("root")
 
 class Spinner {
@@ -20,7 +21,7 @@ class Spinner {
     this.root.innerHTML = compileTempate(spinner, this.data)
     this.items = document.querySelectorAll(".spinner-item")
     this.spinner = document.querySelector(".spinner")
-    this.selector = document.querySelector(".spinner-selector")
+    this.spinnerItems = document.querySelector(".spinner-items")
     this.items.forEach((item, i) => {
       const itemRotation = i * this.rotation
       item.style.transform = `rotate(${itemRotation}deg)`
@@ -31,10 +32,8 @@ class Spinner {
   spin(e) {
     const rotations = 5 * 360
     const toWinner = this.rotation * this.winnderIndex
-    console.log(this.winnderIndex)
-    this.selector.style.transform = `rotate(${rotations + toWinner}deg)`
-
-    const spinTimer = setInterval(() => {}, 1000)
+    const val = (rotations + toWinner) * -1
+    this.spinnerItems.style.transform = `rotate(${val}deg)`
   }
 }
 
