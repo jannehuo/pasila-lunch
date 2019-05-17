@@ -19378,6 +19378,8 @@ var _spinner = _interopRequireDefault(require("./templates/spinner.js"));
 
 var _utils = require("./utils");
 
+var _lodash = require("lodash");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -19394,7 +19396,9 @@ function () {
   function Spinner(data, root) {
     _classCallCheck(this, Spinner);
 
-    this.data = data;
+    this.data = (0, _lodash.shuffle)(data);
+    this.winner = (0, _lodash.sample)(this.data);
+    this.winnderIndex = this.data.indexOf(this.winner);
     this.root = root;
     this.rotation = 360 / this.data.length;
     this.items = null;
@@ -19408,10 +19412,22 @@ function () {
 
       this.root.innerHTML = (0, _utils.compileTempate)(_spinner.default, this.data);
       this.items = document.querySelectorAll(".spinner-item");
+      this.spinner = document.querySelector(".spinner");
+      this.selector = document.querySelector(".spinner-selector");
       this.items.forEach(function (item, i) {
         var itemRotation = i * _this.rotation;
         item.style.transform = "rotate(".concat(itemRotation, "deg)");
       });
+      this.spinner.addEventListener("click", this.spin.bind(this), false);
+    }
+  }, {
+    key: "spin",
+    value: function spin(e) {
+      var rotations = 5 * 360;
+      var toWinner = this.rotation * this.winnderIndex;
+      console.log(this.winnderIndex);
+      this.selector.style.transform = "rotate(".concat(rotations + toWinner, "deg)");
+      var spinTimer = setInterval(function () {}, 1000);
     }
   }]);
 
@@ -19419,7 +19435,7 @@ function () {
 }();
 
 new Spinner(_restaurants.default, root);
-},{"../scss/main":"scss/main.scss","../data/restaurants":"data/restaurants.json","./templates/spinner.js":"src/templates/spinner.js","./utils":"src/utils/index.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"../scss/main":"scss/main.scss","../data/restaurants":"data/restaurants.json","./templates/spinner.js":"src/templates/spinner.js","./utils":"src/utils/index.js","lodash":"node_modules/lodash/lodash.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -19447,7 +19463,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "43271" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "34985" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

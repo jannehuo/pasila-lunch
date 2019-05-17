@@ -22,6 +22,7 @@ body, html {
   width: 300px;
   height: 300px;
   position: relative;
+  cursor: pointer;
 }
 .spinner .spinner-selector, .spinner .spinner-item {
   width: 100%;
@@ -40,6 +41,11 @@ body, html {
   left: 50%;
   transform: translateX(-50%);
   -webkit-transform: translateX(-50%);
+}
+.spinner .spinner-selector {
+  transition: transform 3s ease;
+  -webkit-transition: transform 3s ease;
+  will-change: transform;
 }
 .spinner .spinner-selector:after {
   content: "";
