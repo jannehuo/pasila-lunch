@@ -1,19 +1,30 @@
-@import './mixins.scss';
+@import "./mixins.scss";
+$white-color: #f2f2f2;
+$blue-color: #00205b;
+$yellow-color: #f2a900;
 
 * {
   box-sizing: border-box;
 }
 
-body, html {
+svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+body,
+html {
   margin: 0;
   padding: 0;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-size: 18px;
-  background-color: #f2f2f2;
+  background-color: $white-color;
   overflow: hidden;
 }
 
 #root {
+  filter: url("#goo");
   width: 100%;
   height: 100vh;
   display: flex;
@@ -30,19 +41,21 @@ body, html {
   &:after {
     content: "";
     position: absolute;
-    width: 100px;
-    height: 100px;
+    width: 110px;
+    height: 110px;
     border-radius: 50%;
-    border: 3px solid #333333;
-    top: -50px;
+    top: -55px;
+    background-color: $blue-color;
     @include center-horizontal();
   }
   .spinner-items {
     width: 100%;
     height: 100%;
-    transition: transform 3s ease;
-    -webkit-transition: transform 3s ease;
+    transition: transform 10s ease;
+    -webkit-transition: transform 10s ease;
     will-change: transform;
+    position: relative;
+    z-index: 1;
   }
   .spinner-item {
     width: 100%;
@@ -52,17 +65,28 @@ body, html {
   }
   .spinner-item {
     &:after {
-      content: attr(data-key);
+      content: attr(data-name);
       position: absolute;
-      width: 70px;
-      height: 70px;
+      width: 80px;
+      height: 80px;
       border-radius: 50%;
-      background-color: #333333;
-      top: -35px;
-      color: #f2f2f2;
+      background-color: $blue-color;
+      top: -40px;
+      color: $white-color;
       text-align: center;
-      line-height: 70px;
+      line-height: 80px;
+      font-size: 0.5em;
+      font-weight: 700;
+      text-transform: uppercase;
+      transition: all 0.2s ease;
       @include center-horizontal();
+    }
+    &--winner {
+      &:after {
+        color: $yellow-color;
+        transform: translateX(-50%) scale(1.5);
+        -webkit-transform: translateX(-50%) scale(2);
+      }
     }
   }
 }

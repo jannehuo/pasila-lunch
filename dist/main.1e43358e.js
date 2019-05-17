@@ -198,7 +198,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _default = "\n<div class=\"spinner\">\n  <div class=\"spinner-items\">\n    <% data.forEach((item, i) => { %>\n      <div class=\"spinner-item\" data-key=<%=i%>></div>  \n    <% }) %>\n  </div>\n</div>\n";
+var _default = "\n<div class=\"spinner\">\n  <div class=\"spinner-items\">\n    <% data.forEach((item, i) => { %>\n      <div class=\"spinner-item\" data-name=<%=item%> data-key=<%=i%>></div>  \n    <% }) %>\n  </div>\n</div>\n";
 exports.default = _default;
 },{}],"src/templates/restaurants.js":[function(require,module,exports) {
 "use strict";
@@ -19434,10 +19434,21 @@ function () {
   }, {
     key: "spin",
     value: function spin(e) {
-      var rotations = 5 * 360;
+      var _this2 = this;
+
+      console.log(this.winnderIndex);
+      var rotations = 20 * 360;
       var toWinner = this.rotation * this.winnderIndex;
       var val = (rotations + toWinner) * -1;
       this.spinnerItems.style.transform = "rotate(".concat(val, "deg)");
+      setTimeout(function () {
+        _this2.showWinner();
+      }, 11000);
+    }
+  }, {
+    key: "showWinner",
+    value: function showWinner() {
+      this.items[this.winnderIndex].classList.add("spinner-item--winner");
     }
   }]);
 
@@ -19473,7 +19484,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "36665" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51425" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -2,7 +2,14 @@
   box-sizing: border-box;
 }
 
-body, html {
+svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+body,
+html {
   margin: 0;
   padding: 0;
   font-family: "Roboto", sans-serif;
@@ -12,6 +19,7 @@ body, html {
 }
 
 #root {
+  filter: url("#goo");
   width: 100%;
   height: 100vh;
   display: flex;
@@ -29,11 +37,11 @@ body, html {
 .spinner:after {
   content: "";
   position: absolute;
-  width: 100px;
-  height: 100px;
+  width: 110px;
+  height: 110px;
   border-radius: 50%;
-  border: 3px solid #333333;
-  top: -50px;
+  top: -55px;
+  background-color: #00205b;
   left: 50%;
   transform: translateX(-50%);
   -webkit-transform: translateX(-50%);
@@ -41,9 +49,11 @@ body, html {
 .spinner .spinner-items {
   width: 100%;
   height: 100%;
-  transition: transform 3s ease;
-  -webkit-transition: transform 3s ease;
+  transition: transform 10s ease;
+  -webkit-transition: transform 10s ease;
   will-change: transform;
+  position: relative;
+  z-index: 1;
 }
 .spinner .spinner-item {
   width: 100%;
@@ -52,19 +62,28 @@ body, html {
   position: absolute;
 }
 .spinner .spinner-item:after {
-  content: attr(data-key);
+  content: attr(data-name);
   position: absolute;
-  width: 70px;
-  height: 70px;
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
-  background-color: #333333;
-  top: -35px;
+  background-color: #00205b;
+  top: -40px;
   color: #f2f2f2;
   text-align: center;
-  line-height: 70px;
+  line-height: 80px;
+  font-size: 0.5em;
+  font-weight: 700;
+  text-transform: uppercase;
+  transition: all 0.2s ease;
   left: 50%;
   transform: translateX(-50%);
   -webkit-transform: translateX(-50%);
+}
+.spinner .spinner-item--winner:after {
+  color: #f2a900;
+  transform: translateX(-50%) scale(1.5);
+  -webkit-transform: translateX(-50%) scale(2);
 }
 
 /*# sourceMappingURL=/main.1e43358e.css.map */
