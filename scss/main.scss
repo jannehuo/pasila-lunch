@@ -24,7 +24,6 @@ html {
 }
 
 #root {
-  filter: url("#goo");
   width: 100%;
   height: 100vh;
   display: flex;
@@ -34,8 +33,8 @@ html {
 
 .spinner {
   border-radius: 50%;
-  width: 300px;
-  height: 300px;
+  width: 250px;
+  height: 250px;
   position: relative;
   cursor: pointer;
   &:after {
@@ -44,8 +43,18 @@ html {
     width: 110px;
     height: 110px;
     border-radius: 50%;
-    top: -55px;
+    top: -63px;
+    border: 10px solid $blue-color;
+    @include center-horizontal();
+  }
+  &:before {
+    content: "";
+    display: block;
+    width: 10px;
+    height: 30px;
     background-color: $blue-color;
+    position: absolute;
+    top: -90px;
     @include center-horizontal();
   }
   .spinner-items {

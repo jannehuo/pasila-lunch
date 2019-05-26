@@ -3,12 +3,12 @@ import data from "../data/restaurants";
 import spinner from "./templates/spinner";
 import restaurants from "./templates/restaurants";
 import { compileTempate } from "./utils";
-import { sample, shuffle } from "lodash";
+import { sample, shuffle, sampleSize } from "lodash";
 const root = document.getElementById("root");
-
+console.log(sampleSize(data, 2));
 class Spinner {
   constructor(data, root) {
-    this.data = shuffle(data);
+    this.data = shuffle(sampleSize(data, 6));
     this.winner = sample(this.data);
     this.winnderIndex = this.data.indexOf(this.winner);
     this.root = root;
